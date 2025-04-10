@@ -112,3 +112,27 @@ input[type="text"]:focus {
   color: #28a745;
   font-weight: bold
 }
+
+.vertical-ad {
+  position: fixed;
+  top: 0;
+  width: 120px;
+  /* Adjust width as needed */
+  height: 100%;
+  /* Make ads span the full height of the page */
+}
+
+#left-ad {
+  left: 0;
+}
+
+#right-ad {
+  right: 0;
+}
+
+.container {
+  margin-left: 140px;
+  /* Add space for left ad */
+  margin-right: 140px;
+  /* Add space for right ad */
+}

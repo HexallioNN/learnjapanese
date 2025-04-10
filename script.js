@@ -27,8 +27,27 @@ const kanaList = [
   { hiragana: "の", katakana: "ノ", romanized: "no" },
   { hiragana: "は", katakana: "ハ", romanized: "ha" },
   { hiragana: "ひ", katakana: "ヒ", romanized: "hi" },
-  { hiragana: "ふ", katakana: "フ", romanized: "fu" }
+  { hiragana: "ふ", katakana: "フ", romanized: "fu" },
+  { hiragana: "へ", katakana: "ヘ", romanized: "he" },
+  { hiragana: "ほ", katakana: "ホ", romanized: "ho" },
+  { hiragana: "ま", katakana: "マ", romanized: "ma" },
+  { hiragana: "み", katakana: "ミ", romanized: "mi" },
+  { hiragana: "む", katakana: "ム", romanized: "mu" },
+  { hiragana: "め", katakana: "メ", romanized: "me" },
+  { hiragana: "も", katakana: "モ", romanized: "mo" },
+  { hiragana: "や", katakana: "ヤ", romanized: "ya" },
+  { hiragana: "ゆ", katakana: "ユ", romanized: "yu" },
+  { hiragana: "よ", katakana: "ヨ", romanized: "yo" },
+  { hiragana: "ら", katakana: "ラ", romanized: "ra" },
+  { hiragana: "り", katakana: "リ", romanized: "ri" },
+  { hiragana: "る", katakana: "ル", romanized: "ru" },
+  { hiragana: "れ", katakana: "レ", romanized: "re" },
+  { hiragana: "ろ", katakana: "ロ", romanized: "ro" },
+  { hiragana: "わ", katakana: "ワ", romanized: "wa" },
+  { hiragana: "を", katakana: "ヲ", romanized: "wo" },
+  { hiragana: "ん", katakana: "ン", romanized: "n" }
 ];
+let incorrectAnswers = []; // Store incorrect answers
 
 
 let shuffledKanaList = [];
@@ -108,61 +127,53 @@ function checkAnswer() {
   const currentKana = shuffledKanaList[currentIndex];
 
   if (userAnswer === currentKana.romanized) {
-    resultElement.textContent =
-      selectedLanguage === "Tr" ? "Doğru!" : "Correct!";
+    // Correct answer
+    resultElement.textContent = selectedLanguage === "Tr" ? "Doğru!" : "Correct!";
     resultElement.style.color = "#28a745";
-
     currentIndex++;
-    if (currentIndex < shuffledKanaList.length) {
-      setTimeout(() => {
-        resultElement.textContent = "";
-        askQuestion();
-      }, 1000);
-    } else {
-      setTimeout(() => {
-        resultElement.textContent =
-          selectedLanguage === "Tr"
-            ? "Tebrikler! Quiz'i tamamladınız!"
-            : "Congratulations! You've completed the quiz!";
-        resultElement.style.color = "#333";
-        document.getElementById("quizContainer").classList.add("hidden");
-      }, 1000);
-    }
   } else if (userAnswer === "") {
+    // Space or empty input: Show correct answer and skip
     resultElement.textContent =
       selectedLanguage === "Tr"
         ? `Doğru cevap: ${currentKana.romanized}`
         : `The correct answer is: ${currentKana.romanized}`;
     resultElement.style.color = "#dc3545";
-
+    incorrectAnswers.push(currentKana); // Add to incorrect answers
     currentIndex++;
-    if (currentIndex < shuffledKanaList.length) {
+  } else {
+    // Wrong answer
+    resultElement.textContent = selectedLanguage === "Tr" ? "Yanlış! Tekrar deneyin." : "Wrong! Try again.";
+    resultElement.style.color = "#dc3545";
+    incorrectAnswers.push(currentKana); // Add to incorrect answers
+    currentIndex++;
+  }
+
+  if (currentIndex >= shuffledKanaList.length) {
+    if (incorrectAnswers.length > 0) {
+      shuffledKanaList = [...incorrectAnswers]; // Retry incorrect answers
+      incorrectAnswers = []; // Clear incorrect answers
+      currentIndex = 0; // Reset index
       setTimeout(() => {
-        resultElement.textContent = "";
+        resultElement.textContent =
+          selectedLanguage === "Tr" ? "Tekrar yanlış karakterleri çözün!" : "Retry solving incorrect characters!";
         askQuestion();
-      }, 2000);
+      }, 1000);
     } else {
       setTimeout(() => {
         resultElement.textContent =
-          selectedLanguage === "Tr"
-            ? "Tebrikler! Quiz'i tamamladınız!"
-            : "Congratulations! You've completed the quiz!";
+          selectedLanguage === "Tr" ? "Tebrikler! Quiz'i tamamladınız!" : "Congratulations! You've completed the quiz!";
         resultElement.style.color = "#333";
         document.getElementById("quizContainer").classList.add("hidden");
-      }, 2000);
+      }, 1000);
     }
   } else {
-    resultElement.textContent =
-      selectedLanguage === "Tr"
-        ? "Yanlış! Tekrar deneyin."
-        : "Wrong! Try again.";
-    resultElement.style.color = "#dc3545";
-
     setTimeout(() => {
       resultElement.textContent = "";
-    }, 1500);
+      askQuestion();
+    }, 1000);
   }
 }
+
 
 // Restart the quiz
 function restartQuiz() {
