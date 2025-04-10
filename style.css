@@ -136,3 +136,14 @@ input[type="text"]:focus {
   margin-right: 140px;
   /* Add space for right ad */
 }
+
+#bottom-ad {
+  width: 100%;
+  /* Ensure the ad spans the full width */
+  text-align: center;
+  /* Center-align the ad */
+  margin-top: 20px;
+  /* Add some spacing between the content and the ad */
+  position: relative;
+  /* Adjust positioning if necessary */
+}
