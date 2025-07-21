@@ -2,71 +2,43 @@
 <html lang="en">
 
 <head>
-
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Hiragana & Katakana Quiz</title>
   <link rel="stylesheet" href="style.css">
-
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2362642513032606"
-    crossorigin="anonymous"></script>
 </head>
 
 <body>
-  <!-- Left Ad -->
-  <div id="left-ad" class="vertical-ad">
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2362642513032606"
-      crossorigin="anonymous"></script>
-    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-2362642513032606" data-ad-slot="2183964143"
-      data-ad-format="auto" data-full-width-responsive="true"></ins>
-    <script>
-      (adsbygoogle = window.adsbygoogle || []).push({});
-    </script>
-  </div>
-
-  <!-- Main Content -->
   <div class="container">
+    <!-- Header -->
     <h1 id="header">Welcome to the Hiragana & Katakana Quiz!</h1>
+
+    <!-- Language Selection -->
     <div id="languageSelection">
-      <h2>Select your language:</h2>
+      <p>Select your language:</p>
       <button class="btn-primary" onclick="setLanguage('Tr')">Türkçe</button>
-      <button class="btn-primary" onclick="setLanguage('En')">English</button>
+      <button class="btn-primary" onclick="setLanguage('Eng')">English</button>
     </div>
 
+    <!-- Mode Selection -->
     <div id="modeSelection" class="hidden">
-      <h2>Select quiz mode:</h2>
+      <p>Select quiz mode:</p>
       <button class="btn-secondary" onclick="setMode('H')">Hiragana</button>
       <button class="btn-secondary" onclick="setMode('K')">Katakana</button>
       <button class="btn-secondary" onclick="setMode('B')">Both</button>
     </div>
+
+    <!-- Quiz Section -->
     <div id="quizContainer" class="hidden">
       <h2 id="question"></h2>
-      <input type="text" id="userAnswer" placeholder="Your answer here...">
+      <input type="text" id="userAnswer" placeholder="Enter your answer here">
+      <button id="submit" class="btn-primary" onclick="checkAnswer()">Submit</button>
       <p id="result"></p>
-      <button class="btn-primary" onclick="checkAnswer()">Submit</button>
     </div>
   </div>
 
-  <!-- Right Ad -->
-  <div id="right-ad" class="vertical-ad">
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2362642513032606"
-      crossorigin="anonymous"></script>
-    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-2362642513032606" data-ad-slot="2183964143"
-      data-ad-format="auto" data-full-width-responsive="true"></ins>
-    <script>
-      (adsbygoogle = window.adsbygoogle || []).push({});
-    </script>
-  </div>
-  <div id="bottom-ad">
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2362642513032606"
-      crossorigin="anonymous"></script>
-    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-2362642513032606" data-ad-slot="7072855988"
-      data-ad-format="auto" data-full-width-responsive="true"></ins>
-    <script>
-      (adsbygoogle = window.adsbygoogle || []).push({});
-    </script>
-  </div>
-  <script src="script.js" defer></script>
+  <!-- JavaScript File -->
+  <script src="./script.js"></script>
 </body>
 
 </html>
