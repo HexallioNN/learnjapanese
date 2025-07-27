@@ -181,4 +181,4 @@ function restartQuiz() {
 
   document.getElementById("languageSelection").classList.remove("hidden");
 }
-//FUCK ME
+
